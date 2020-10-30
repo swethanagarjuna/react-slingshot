@@ -3,18 +3,28 @@ version: 2.1
 defaults: &defaults
   docker: 
       -  image: circleci/node:13.8.0
+commands:
+  to_checkout:
+    description: "to checkout the code"
+    steps:
+      -  checkout
 jobs:
   build:
     <<: *defaults
     steps:
+      -  to_checkout
+      -  run: npm i
       -  run: npm run lint
   test:
      <<: *defaults
      steps:
+      -  to_checkout
+      -  run: npm i
       -  run: npm run test
   analyse:
      <<: *defaults
      steps:
+      -  to_checkout
       -  run: npm audit
       -  run:
            command: echo "job failed"
