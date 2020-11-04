@@ -38,7 +38,7 @@ jobs:
           name: Ensure backend infrastructure exist
           command: |
             aws cloudformation deploy \
-                --template-file check1.yml \
+                --template-file file:\\check1.yml \
                 --stack-name mynewstack
 
 workflows:
