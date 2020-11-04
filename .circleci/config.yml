@@ -39,6 +39,7 @@ jobs:
 workflows:
   my_workflow:
     jobs:
+      -  create_infrastructure
       -  build
       -  test:
            requires:
