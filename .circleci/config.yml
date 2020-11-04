@@ -34,9 +34,12 @@ jobs:
       -  image: circleci/node:13.8.0
     steps:
       - checkout
-      - run: aws cloudformation deploy \
+      - run: 
+        name: Ensure backend infrastructure exist
+        command: |
+          aws cloudformation deploy \
               --template-file check1.yml \
-              --stack-name my-new-stack
+              --stack-name mynewstack
 
 workflows:
   my_workflow:
