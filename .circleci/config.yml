@@ -2,7 +2,7 @@
 version: 2.1
 defaults: &defaults
   docker: 
-      -  image: circleci/node:13.8.0
+      -  image: amazon/aws-cli
 commands:
   to_checkout:
     description: "to checkout the code"
@@ -45,7 +45,7 @@ workflows:
   my_workflow:
     jobs:
       -  create_infrastructure
-      -  build
+     # -  build
      #-  test:
      #      requires:
      #        -  build
