@@ -34,16 +34,18 @@ jobs:
       -  image: circleci/node:13.8.0
     steps:
       - checkout
-      - run: aws cloudformation deploy --template-file check1.yml --stack-name my-new-stack
+      - run: aws cloudformation deploy \
+              --template-file check1.yml \
+              --stack-name my-new-stack
 
 workflows:
   my_workflow:
     jobs:
       -  create_infrastructure
       -  build
-      -  test:
-           requires:
-             -  build
-      -  analyse:
-           requires:
-             -  test
+     #-  test:
+     #      requires:
+     #        -  build
+     # -  analyse:
+     #      requires:
+     #        -  test
