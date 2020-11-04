@@ -35,11 +35,11 @@ jobs:
     steps:
       - checkout
       - run: 
-        name: Ensure backend infrastructure exist
-        command: |
-          aws cloudformation deploy \
-              --template-file check1.yml \
-              --stack-name mynewstack
+          name: Ensure backend infrastructure exist
+          command: |
+            aws cloudformation deploy \
+                --template-file check1.yml \
+                --stack-name mynewstack
 
 workflows:
   my_workflow:
