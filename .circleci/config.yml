@@ -29,6 +29,15 @@ jobs:
       -  run:
            command: echo "job failed"
            when: on_fail
+  create_infrastructure:
+    docker: 
+      -  image: circleci/node:13.8.0
+    steps:
+      -checkout
+      -run: 
+        name: backend infra
+        command: aws cloudformation deploy --template-file check1.yml --stack-name my-new-stack
+
 workflows:
   my_workflow:
     jobs:
