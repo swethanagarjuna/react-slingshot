@@ -54,11 +54,6 @@ jobs:
           command: |
            apk add --update ansible
       - run:
-          name: change permissions
-          command: |
-            chmod 744 /etc/ansible/hosts
-            ansible all --list-hosts
-      - run:
           name: Configure server
           command: |
             ansible-playbook -i inventory.txt playbook.yml
