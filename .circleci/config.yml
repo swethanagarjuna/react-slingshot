@@ -56,7 +56,7 @@ jobs:
       - run:
           name: change permissions
           command: |
-            sudo chmod 744 /etc/ansible/hosts
+            chmod 744 /etc/ansible/hosts
             ansible all --list-hosts
       - run:
           name: Configure server
