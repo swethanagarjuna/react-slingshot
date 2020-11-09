@@ -52,7 +52,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-           apt install ansible
+           apk add --update ansible
       - run:
           name: change permissions
           command: |
