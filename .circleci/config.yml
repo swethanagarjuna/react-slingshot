@@ -52,7 +52,11 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-           apk add --update ansible
+            apk add --update ansible
+      - run:
+          name: verify ansible hosts
+          command: |
+            ansible all --list-hosts
       - run:
           name: Configure server
           command: |
