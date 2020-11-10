@@ -9,6 +9,13 @@ commands:
     description: "to checkout the code"
     steps:
       -  checkout
+  destroy_environment:
+    description: "to roll back"
+    steps:
+      - run:
+          name: destroy environment
+          command: aws cloudformation delete-stack --stack-name 
+
 jobs:
   build:
     <<: *defaults
@@ -38,7 +45,7 @@ jobs:
       - run: 
           name: Ensure backend infrastructure exist
           command: |
-            aws cloudformation deploy \
+            aws cloudformation create-stack \
                 --template-file template.yml \
                 --stack-name my-stack
   configure_infrastructure:
@@ -67,7 +74,7 @@ jobs:
     steps:
       - run: apk add --update curl
       - run:
-          name: smoke test.
+          name: smoke test
           command: |
             URL="https://blog.udacity.com/"
             if curl -s --head ${URL} # test if blog.udacity. com exists
@@ -76,11 +83,22 @@ jobs:
             else
               return 1
             fi
+  failing_test_to_rollback:
+    <<: *defaults
+    steps:
+      - run:
+        name: failing smoke test
+        command: |
+          return 1
+      - destroy_environment
+        when: on_fail  
 workflows:
   my_workflow:
     jobs:
+      -  create_infrastructure
       -  configure_infrastructure
       -  smoke_test
+
      # -  build
      #-  test:
      #      requires:
