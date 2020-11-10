@@ -61,10 +61,21 @@ jobs:
           name: Configure server
           command: |
             ansible-playbook -i inventory.txt playbook.yml
+  smoke_test:
+    steps:
+      - run:
+          name: verify access
+          command: if curl -s --head "https://google.com" \
+                  then \
+                  echo "It worked!" \
+                  else \
+                  echo "It failed" \
+                  fi
 workflows:
   my_workflow:
     jobs:
       -  configure_infrastructure
+      -  smoke_test
      # -  build
      #-  test:
      #      requires:
