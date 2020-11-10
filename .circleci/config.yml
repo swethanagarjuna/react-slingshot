@@ -62,6 +62,7 @@ jobs:
           command: |
             ansible-playbook -i inventory.txt playbook.yml
   smoke_test:
+    <<: *defaults
     steps:
       - run:
           name: verify access
