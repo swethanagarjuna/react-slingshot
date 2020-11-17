@@ -10,13 +10,12 @@ commands:
     steps:
       -  checkout
   destroy_environment: 
-    description: "to roll back"
     steps:
       - run:
-          name: destroy environment
+          name: Rollback network resources
           command: |
             aws cloudformation delete-stack --stack-name prod-${CIRCLE_WORKFLOW_ID}
-            when: on_fail
+          when: on_fail
 jobs:
   build:
     <<: *defaults
