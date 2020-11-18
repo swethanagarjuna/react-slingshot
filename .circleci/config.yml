@@ -101,8 +101,7 @@ jobs:
   get_last_deployment_id:
     steps:
       name: Add back-end ip to ansible inventory
-          command: |
-      -   run: |
+      - run: |
           aws cloudformation \
             list-exports --query "Exports[?Name==\`PipelineID\`].Value" \
             --no-paginate --output text  >> ~/output.txt
