@@ -146,9 +146,9 @@ workflows:
       -  clean_up_old_front_end:
             requires: 
               -  get_last_deployment_id
-      -  create_infrastructure
-      -  configure_infrastructure
-      -  smoke_test
+      #-  create_infrastructure
+      #-  configure_infrastructure
+      #-  smoke_test
 
      # -  build
      #-  test:
