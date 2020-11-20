@@ -99,6 +99,8 @@ jobs:
           aws s3 sync . s3://"${CIRCLE_WORKFLOW_ID}" --delete
 
   get_last_deployment_id:
+    docker:
+      - image: amazon/aws-cli
     steps:
       - run: |
           aws cloudformation \
@@ -122,6 +124,8 @@ jobs:
             --parameter-overrides PipelineID="${CIRCLE_WORKFLOW_ID}"
     
   clean_up_old_front_end:
+      docker:
+      - image: amazon/aws-cli
     steps:
       - checkout
       - run: |
