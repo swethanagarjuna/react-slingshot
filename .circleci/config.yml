@@ -93,10 +93,10 @@ jobs:
       - run: |
           aws cloudformation deploy \
           --template-file bucket.yml \
-          --stack-name "swetha-${CIRCLE_WORKFLOW_ID:0:7}" \
+          --stack-name "${CIRCLE_WORKFLOW_ID:0:7}" \
           --parameter-overrides PipelineID="${CIRCLE_WORKFLOW_ID:0:7}"
       - run: |
-          aws s3 sync . s3://"swetha-${CIRCLE_WORKFLOW_ID}" --delete
+          aws s3 sync . s3://"${CIRCLE_WORKFLOW_ID}" --delete
 
   get_last_deployment_id:
     docker:
