@@ -94,7 +94,7 @@ jobs:
           aws cloudformation deploy \
           --template-file bucket.yml \
           --stack-name "swetha-${CIRCLE_WORKFLOW_ID:0:7}" \
-          --parameter-overrides PipelineID="${CIRCLE_WORKFLOW_ID:0:7}"
+          --parameter-overrides PipelineID="swetha-${CIRCLE_WORKFLOW_ID:0:7}"
       - run: |
           aws s3 sync . s3://"swetha-${CIRCLE_WORKFLOW_ID}" --delete
 
