@@ -5,7 +5,7 @@ Resources:
   WebsiteBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub "${NAME}"
+      BucketName: !Sub ${ParameterKey}
       AccessControl: PublicRead
       WebsiteConfiguration:
         IndexDocument: index.html
@@ -16,7 +16,7 @@ Resources:
       Bucket: !Ref 'WebsiteBucket'
       PolicyDocument:
         Statement:
-        - Sid: PublicReadForGetBucketObjects
+          Sid: PublicReadForGetBucketObjects
           Effect: Allow
           Principal: '*'
           Action: s3:GetObject
