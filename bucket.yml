@@ -5,11 +5,11 @@ Resources:
   WebsiteBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub ${ParameterKey}
+      BucketName: !Sub ${NAME}
       AccessControl: PublicRead
       WebsiteConfiguration:
         IndexDocument: index.html
-        ErrorDocument: 404.html
+        ErrorDocument: error.html
   WebsiteBucketPolicy:
     Type: AWS::S3::BucketPolicy
     Properties:
