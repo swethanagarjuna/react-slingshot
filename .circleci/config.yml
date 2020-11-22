@@ -102,9 +102,7 @@ jobs:
     docker:
       - image: amazon/aws-cli
     steps:
-      - run: apk add tar
-      - run: which tar
-      - run: /usr/bin/tar
+      - run: yum install -y tar
       - run: |
           aws cloudformation \
             list-exports --query "Exports[?Name==\`PipelineID\`].Value" \
